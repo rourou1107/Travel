@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header-left">
-      <div class="iconfont backbtn">&#xe624;</div>
+      <div class="iconfont backBtn">&#xe624;</div>
     </div>
     <div class="header-input">
       <span class="iconfont">&#xe632;</span>
@@ -30,7 +30,7 @@ export default {
       width: .64rem
       float: left
       line-height: .86rem
-      .backbtn
+      .backBtn
         text-align: center
     .header-input
       height: .64rem
