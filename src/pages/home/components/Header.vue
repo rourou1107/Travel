@@ -1,17 +1,16 @@
 <template>
   <div class="header">
-    <div class="header-left">
-      <div class="iconfont backBtn">&#xe624;</div>
+    <div class="left">
+      <span class="iconfont back-icon">&#xe624;</span>
     </div>
-    <div class="header-input">
+    <div class="input">
       <span class="iconfont">&#xe632;</span>
       输入城市/景点/游玩主题
     </div>
-    <div class="header-right">
+    <div class="right">
       城市
-      <span class="iconfont arrow">&#xe64a;</span>
+      <span class="iconfont arrow-icon">&#xe64a;</span>
     </div>
-
   </div>
 </template>
 <script>
@@ -23,31 +22,30 @@ export default {
   @import '~styles/variable.styl'
   .header
     height: .86rem
+    line-height: .86rem
     background-color: $bgColor
     display: flex
     color: #fff
-    .header-left
+    .left
       width: .64rem
       float: left
-      line-height: .86rem
-      .backBtn
-        text-align: center
-    .header-input
-      height: .64rem
-      line-height: .64rem
+      text-align: center
+      .back-icon
+        font-size: .4rem
+    .input
+      height: .62rem
+      line-height: .62rem
       margin-top: .12rem
-      margin-left: .2rem
       flex: 1
       background-color: #fff
-      border-radius: .1rem
       color: #ccc
-      padding-left: .2rem
-    .header-right
-      text-align: center
+      border-radius: .1rem
+      padding-left: .1rem
+    .right
       width: 1.24rem
       float: right
-      line-height: .86rem
-      .arrow
-        font-size: .28rem
-        margin-left: -0.05rem
+      text-align: center
+      .arrow-icon
+        margin-left: -.04rem
+        font-size: .24rem
 </style>
