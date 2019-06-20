@@ -43,9 +43,9 @@ export default {
     background-color: #fff
   .wrapper
     width: 100%
-    overflow: hidden
+    ///*overflow: hidden*/
     height: 0
-    padding-bottom:37%
+    padding-bottom:37% /*高度为这个div的宽的37%不能设置height,height的百分比是相对于父元素的高度*/
     .swiper-img
       width: 100%
 </style>
