@@ -56,7 +56,6 @@ export default {
     line-height: .8rem
     background-color: #eee
     text-indent: .24rem
-    margin-top: .2rem
     font-size: .28rem
     color: #000000
   .item
