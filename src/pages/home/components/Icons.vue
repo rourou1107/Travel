@@ -123,5 +123,4 @@ export default {
         line-height: .44rem
         text-align: center
         color: $darkTextColor
-        ()
 </style>
