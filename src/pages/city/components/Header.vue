@@ -8,7 +8,7 @@
 </template>
 <script>
 export default {
-  name: 'HomeHeader'
+  name: 'CityHeader'
 }
 </script>
 <style lang="stylus" scoped>
