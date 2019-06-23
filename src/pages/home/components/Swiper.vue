@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
-    <swiper :options="swiperOption">
-      <swiper-slide v-for="item of swiperList" :key=item.id>
+    <swiper :options="swiperOption" v-if="swiperShow">
+      <swiper-slide v-for="item of list" :key=item.id>
         <img class='swiper-img' :src=item.src />
       </swiper-slide>
       <div class="swiper-pagination"  slot="pagination"></div>
@@ -11,28 +11,23 @@
 <script>
 export default {
   name: 'HomeSwiper',
+  props: {
+    list: Array
+  },
   data () {
     return {
       swiperOption: {
         pagination: {
           el: '.swiper-pagination'
         },
+        autoplay: true, // 自动滚动
         loop: true // 支持循环轮播
-      },
-      swiperList: [
-        {
-          id: '00001',
-          src: 'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20195/69c69e52b47d5f725be924f5563d1285.jpg_890x330_7bb33f95.jpg'
-        },
-        {
-          id: '00002',
-          src: 'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20195/4cf92fd4010e46d9e2698e89d08c5708.jpg_890x330_3f24e836.jpg'
-        },
-        {
-          id: '00003',
-          src: 'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20196/682df2ddabdeb7078f9a9225462c9470.jpg_890x330_b7a20aeb.jpg'
-        }
-      ]
+      }
+    }
+  },
+  computed: {
+    swiperShow () {
+      return this.list.length
     }
   }
 }

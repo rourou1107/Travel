@@ -1,10 +1,10 @@
 <template>
   <div>
-    <home-header></home-header>
-    <home-swiper></home-swiper>
-    <home-icon></home-icon>
-    <home-recommend></home-recommend>
-    <home-weekend></home-weekend>
+    <home-header :city="city"></home-header>
+    <home-swiper :list="swiperList"></home-swiper>
+    <home-icon :list="iconList"></home-icon>
+    <home-recommend :list="recommendList"></home-recommend>
+    <home-weekend :list="weekendList"></home-weekend>
   </div>
 </template>
 <script>
@@ -23,13 +23,31 @@ export default {
     HomeRecommend: HomeRecommend,
     HomeWeekend: HomeWeekend
   },
+  data () {
+    return {
+      city: '',
+      swiperList: [],
+      iconList: [],
+      recommendList: [],
+      weekendList: []
+    }
+  },
   // 所有的请求全都放在首页这个文件请求比较好,分散开页面的体验不好
   methods: {
     getHomeInfo () {
       axios.get('/api/index.json').then(this.getHomeInfoSucc)
     },
-    getHomeInfoSucc (info) {
-      console.log(info)
+    getHomeInfoSucc (res) {
+      // console.log(res)
+      res = res.data
+      if (res.ret && res.data) {
+        const data = res.data
+        this.city = data.city
+        this.swiperList = data.swiperList
+        this.iconList = data.iconList
+        this.recommendList = data.recommendList
+        this.weekendList = data.weekendList
+      }
     }
   },
   // 在生命周期函数内请求

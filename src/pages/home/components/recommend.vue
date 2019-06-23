@@ -2,7 +2,7 @@
   <div>
     <div class="title">热销推荐</div>
     <ul>
-      <li class="item border-bottom" v-for="item of recommendList" :key="item.id">
+      <li class="item border-bottom" v-for="item of list" :key="item.id">
         <img :src="item.src" class="item-img"/>
         <div class="item-info">
           <p class="item-title">{{item.title}}</p>
@@ -16,40 +16,11 @@
 <script>
 export default {
   name: 'HomeRecommend',
+  props: {
+    list: Array
+  },
   data () {
     return {
-      recommendList: [
-        {
-          id: '00001',
-          src: 'http://img1.qunarzz.com/sight/p0/1902/7a/7ac34ad6cc6e7497a3.img.jpg_200x200_939e55b1.jpg',
-          title: '东莞龙凤山庄影视渡假村',
-          desc: '东莞龙凤山庄影视渡假村东莞龙凤山庄影视渡假村'
-        },
-        {
-          id: '00002',
-          src: 'http://img1.qunarzz.com/sight/p0/1511/34/34170b200db08a5a90.img.jpg_200x200_cc3130fd.jpg',
-          title: '隐贤山庄',
-          desc: '隐贤山庄隐贤山庄隐贤山庄隐贤山庄隐贤山庄'
-        },
-        {
-          id: '00003',
-          src: 'http://img1.qunarzz.com/sight/p0/1905/af/af4f95f579ee43b1a3.water.jpg_200x200_9fdbf80f.jpg',
-          title: '东莞观音山旅游风景区',
-          desc: '东莞观音山旅游风景区东莞观音山旅游风景区东莞观音山旅游风景区东莞观音山旅游风景区'
-        },
-        {
-          id: '00004',
-          src: 'http://img1.qunarzz.com/sight/p0/1603/1d/1d756648039bf30f90.water.jpg_200x200_64da9a70.jpg',
-          title: '东莞香市动物园',
-          desc: '东莞香市动物园东莞香市动物园东莞香市动物园'
-        },
-        {
-          id: '00005',
-          src: 'http://img1.qunarzz.com/sight/p0/1602/a2/a2db6aea3707663a90.img.jpg_200x200_cbf889a6.jpg',
-          title: '梦幻百花洲',
-          desc: '梦幻百花洲'
-        }
-      ]
     }
   }
 }
