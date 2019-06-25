@@ -1,13 +1,24 @@
 <template>
-  <ul class="list">
-    <li class="item" v-for="(items,key) of cities" :key="key">{{key}}</li>
-  </ul>
+    <ul class="list">
+      <li @click="handleLetterClick" class="item"
+          v-for="(items,key) of cities"
+          :key="key"
+      >
+        {{key}}
+      </li>
+    </ul>
 </template>
 <script>
 export default {
   name: 'CityAlphabet',
   props: {
     cities: Object
+  },
+  methods: {
+    handleLetterClick (e) { // e指的是函数触发时的参数
+      // console.log(e.target.innerHTML)
+      this.$emit('change', e.target.innerText)
+    }
   }
 }
 </script>
