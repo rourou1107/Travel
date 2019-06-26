@@ -18,24 +18,37 @@ export default {
   name: 'CityAlphabet',
   data () {
     return {
-      touchStatus: false
+      touchStatus: false,
+      startY: 0,
+      timer: null
     }
   },
   props: {
     cities: Object
   },
+  updated () { // 生命周期钩子,页面数据变化且页面重新渲染后会执行
+    this.startY = this.$refs['A'][0].offsetTop
+  },
   methods: {
-    handleLetterClick (e) { // e指的是函数触发时的参数
+    handleLetterClick (e) { // e指的是函数触发时的参数,里面存着很多属性和方法
       this.$emit('change', e.target.innerText)
     },
     handleTouchStart () {
       this.touchStatus = true
     },
     handleTouchMove (e) {
-      const startY = this.$refs['A'][0].offsetTop
-      const endY = e.changedTouches[0].clientY
-      const index = Math.floor((endY - startY - 79) / 20)
-      this.$emit('change', this.letters[index])
+      if (this.touchStatus) {
+        if (this.timer != null) {
+          clearTimeout(this.timer)
+        }
+        this.timer = setTimeout(() => { // 减少touchMove函数的触发次数
+          const touchY = e.changedTouches[0].clientY
+          const index = Math.floor((touchY - this.startY - 79) / 20)
+          if (index >= 0 && index <= this.letters.length) {
+            this.$emit('change', this.letters[index])
+          }
+        }, 16)
+      }
     },
     handleTouchEnd () {
       this.touchStatus = false
