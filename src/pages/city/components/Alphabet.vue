@@ -1,23 +1,53 @@
 <template>
     <ul class="list">
-      <li @click="handleLetterClick" class="item"
-          v-for="(items,key) of cities"
-          :key="key"
+      <li
+          v-for="item of letters"
+          :key="item"
+          :ref="item"
+          @click="handleLetterClick" class="item"
+          @touchstart="handleTouchStart"
+          @touchmove="handleTouchMove"
+          @touchend="handleTouchEnd"
       >
-        {{key}}
+        {{item}}
       </li>
     </ul>
 </template>
 <script>
 export default {
   name: 'CityAlphabet',
+  data () {
+    return {
+      touchStatus: false
+    }
+  },
   props: {
     cities: Object
   },
   methods: {
     handleLetterClick (e) { // e指的是函数触发时的参数
-      // console.log(e.target.innerHTML)
       this.$emit('change', e.target.innerText)
+    },
+    handleTouchStart () {
+      this.touchStatus = true
+    },
+    handleTouchMove (e) {
+      const startY = this.$refs['A'][0].offsetTop
+      const endY = e.changedTouches[0].clientY
+      const index = Math.floor((endY - startY - 79) / 20)
+      this.$emit('change', this.letters[index])
+    },
+    handleTouchEnd () {
+      this.touchStatus = false
+    }
+  },
+  computed: {
+    letters () {
+      const letter = []
+      for (let key in this.cities) {
+        letter.push(key)
+      }
+      return letter
     }
   }
 }
