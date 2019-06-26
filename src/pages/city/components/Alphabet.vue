@@ -37,7 +37,7 @@ export default {
       this.touchStatus = true
     },
     handleTouchMove (e) {
-      if (this.touchStatus) {
+      if (this.touchStatus) { // 只有touchStart之后才可以触发touchMove
         if (this.timer != null) {
           clearTimeout(this.timer)
         }
