@@ -6,6 +6,7 @@ import router from './router'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import fastClick from 'fastclick'
 import ElementUI from 'element-ui'
+import store from './store/index.js'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'styles/border.css'
 import 'styles/reset.css'
@@ -21,6 +22,7 @@ Vue.use(ElementUI)
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

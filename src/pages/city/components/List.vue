@@ -4,13 +4,21 @@
       <div class="city-list border-topbottom">当前城市</div>
       <div class="button-wrapper">
         <div class="city-list-button">
-          <button class="button-list">北京</button>
+          <button
+            class="button-list"
+          >
+            {{this.$store.state.city}}
+          </button>
         </div>
       </div>
       <div class="city-list border-topbottom">热门城市</div>
       <div class="button-wrapper">
         <div class="city-list-button" v-for="item of hotCities" :key="item.id">
-          <button class="button-list">{{item.name}}</button>
+          <button class="button-list"
+                  @click="handleCityClick(item.name)"
+          >
+            {{item.name}}
+          </button>
         </div>
       </div>
       <div v-for="(items,key) of cities" :key="key">
@@ -18,6 +26,7 @@
         <ul>
           <li class="city-capital border-bottom"
               v-for="item of items" :key="item.id"
+              @click="handleCityClick(item.name)"
           >
             {{item.name}}
           </li>
@@ -35,8 +44,11 @@ export default {
     hotCities: Array,
     letter: String
   },
-  mounted () {
-    this.scroll = new BScroll(this.$refs.wrapper)
+  methods: {
+    handleCityClick (city) {
+      this.$store.dispatch('changeCity', city) // 要派发一个changeCity的action,将city传过去
+      this.$router.push('/')
+    }
   },
   watch: {
     letter () {
@@ -45,6 +57,9 @@ export default {
         this.scroll.scrollToElement(element)
       }
     }
+  },
+  mounted () {
+    this.scroll = new BScroll(this.$refs.wrapper)
   }
 }
 </script>

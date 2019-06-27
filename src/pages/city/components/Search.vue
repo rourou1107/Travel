@@ -12,6 +12,7 @@
         <li class="search-written border-bottom"
             v-for="item of list"
             :key="item.id"
+            @click="handleCityClick(item.name)"
         >
           {{item.name}}
         </li>
@@ -39,13 +40,16 @@ export default {
       timer: false
     }
   },
+  methods: {
+    handleCityClick (city) {
+      this.$store.dispatch('changeCity', city) // 要派发一个changeCity的action,将city传过去
+      this.$router.push('/')
+    }
+  },
   computed: {
     hasNoData () {
       return !this.list.length
     }
-  },
-  mounted () {
-    this.scroll = new BScroll(this.$refs.search)
   },
   watch: {
     keyword () {
@@ -69,6 +73,9 @@ export default {
         this.list = result
       }, 100)
     }
+  },
+  mounted () {
+    this.scroll = new BScroll(this.$refs.search)
   }
 }
 </script>

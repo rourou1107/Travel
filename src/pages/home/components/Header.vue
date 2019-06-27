@@ -9,7 +9,7 @@
     </div>
     <router-link to="/city">
       <div class="right">
-        {{city}}
+        {{this.$store.state.city}}
         <span class="iconfont arrow-icon">&#xe64a;</span>
       </div>
     </router-link>
@@ -17,10 +17,7 @@
 </template>
 <script>
 export default {
-  name: 'header',
-  props: {
-    city: String
-  }
+  name: 'header'
 }
 </script>
 <style lang="stylus" scoped>
