@@ -13,6 +13,7 @@ import HomeSwiper from './components/Swiper'
 import HomeIcon from './components/Icons'
 import HomeRecommend from './components/recommend'
 import HomeWeekend from './components/weekend'
+import { mapState } from 'vuex'
 import axios from 'axios'
 export default {
   name: 'Home',
@@ -28,13 +29,17 @@ export default {
       swiperList: [],
       iconList: [],
       recommendList: [],
-      weekendList: []
+      weekendList: [],
+      lastCity: ''
     }
+  },
+  computed: {
+    ...mapState(['city'])
   },
   // 所有的请求全都放在首页这个文件请求比较好,分散开页面的体验不好
   methods: {
     getHomeInfo () {
-      axios.get('/api/index.json').then(this.getHomeInfoSucc)
+      axios.get('/api/index.json?city=' + this.city).then(this.getHomeInfoSucc)
     },
     getHomeInfoSucc (res) {
       // console.log(res)
@@ -51,6 +56,13 @@ export default {
   // 在生命周期函数内请求
   mounted () {
     this.getHomeInfo()
+    this.lastCity = this.city
+  },
+  activated () {
+    if (this.lastCity !== this.city) {
+      this.lastCity = this.city
+      this.getHomeInfo()
+    }
   }
 }
 </script>
