@@ -36,6 +36,7 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 import BScroll from 'better-scroll'
 export default {
   name: 'CityList',
@@ -46,9 +47,11 @@ export default {
   },
   methods: {
     handleCityClick (city) {
-      this.$store.dispatch('changeCity', city) // 要派发一个changeCity的action,将city传过去
+      // this.$store.dispatch('changeCity', city) // 要派发一个changeCity的action,将city传过去
+      this.changeCity(city)
       this.$router.push('/')
-    }
+    },
+    ...mapActions(['changeCity'])
   },
   watch: {
     letter () {
