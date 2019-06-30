@@ -7,7 +7,7 @@
           <button
             class="button-list"
           >
-            {{this.$store.state.city}}
+            {{city}}
           </button>
         </div>
       </div>
@@ -36,7 +36,7 @@
   </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import BScroll from 'better-scroll'
 export default {
   name: 'CityList',
@@ -44,6 +44,9 @@ export default {
     cities: Object,
     hotCities: Array,
     letter: String
+  },
+  computed: {
+    ...mapState(['city'])
   },
   methods: {
     handleCityClick (city) {

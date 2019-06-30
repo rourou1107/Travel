@@ -58,7 +58,7 @@ export default {
     this.getHomeInfo()
     this.lastCity = this.city
   },
-  activated () {
+  activated () { // 使用keeplive时,会增加一个actived生命周期函数,他执行的时期是页面被重新显示时
     if (this.lastCity !== this.city) {
       this.lastCity = this.city
       this.getHomeInfo()

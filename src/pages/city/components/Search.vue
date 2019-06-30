@@ -44,7 +44,7 @@ export default {
   methods: {
     handleCityClick (city) {
       // this.$store.dispatch('changeCity', city) // 要派发一个changeCity的action,将city传过去
-      this.changeCity(city)
+      this.changeCity(city) // 将this.changeCity(city)映射为ctx.commit('changeCity', city)
       this.$router.push('/')
     },
     ...mapActions(['changeCity'])
