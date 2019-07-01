@@ -1,14 +1,22 @@
 <template>
-  <banner></banner>
+  <div>
+    <detail-banner></detail-banner>
+    <detail-header></detail-header>
+    <div class="veryHeight"></div>
+  </div>
 </template>
 <script>
-import Banner from './components/Banner'
+import DetailBanner from './components/Banner'
+import DetailHeader from './components/Header'
 export default {
   name: 'Detail',
   components: {
-    Banner
+    DetailBanner,
+    DetailHeader
   }
 }
 </script>
-<style>
+<style lang="stylus" scoped>
+  .veryHeight
+      height: 20rem
 </style>
