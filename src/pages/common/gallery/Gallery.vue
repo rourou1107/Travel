@@ -1,7 +1,7 @@
 <template>
   <div class="container" @click="handleGalleryClick">
     <swiper :options="swiperOption" class="wrapper">
-      <swiper-slide v-for="(item, index) of imgUrl" :key="index">
+      <swiper-slide v-for="(item, index) of imageUrl" :key="index">
         <img class='gallery-img' :src="item"/>
       </swiper-slide>
       <div class="swiper-pagination"  slot="pagination"></div>
@@ -11,7 +11,9 @@
 <script>
 export default {
   name: 'gallery',
-  props: ['imgUrl'],
+  props: {
+    imageUrl: Array
+  },
   data () {
     return {
       swiperOption: {

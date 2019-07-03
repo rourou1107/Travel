@@ -18,9 +18,12 @@ export default new Router({
       component: City
     },
     {
-      path: '/detail',
+      path: '/detail/:id', // 将id存在this.$route.params内
       name: 'detail',
       component: Detail
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) { // 每次路由切换时,新的页面x为0,y为0
+    return { x: 0, y: 0 }
+  }
 })

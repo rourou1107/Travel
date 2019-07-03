@@ -7,8 +7,8 @@
     >
       <span class="item-icon"></span>
       {{item.title}}
-      <div v-if="item.child" class="item-child">
-        <detail-list :list="item.child"></detail-list> <!--递归调用,与name对应-->
+      <div v-if="item.children" class="item-child">
+        <detail-list :list="item.children"></detail-list> <!--递归调用,与name对应-->
       </div>
     </div>
   </div>

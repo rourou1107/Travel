@@ -1,6 +1,10 @@
 <template>
   <div>
-    <detail-banner></detail-banner>
+    <detail-banner
+      :sightName="sightName"
+      :bannerImg="bannerImg"
+      :gallaryImgs="gallaryImgs"
+    ></detail-banner>
     <detail-header></detail-header>
     <div class="veryHeight">
       <detail-list :list="list"></detail-list>
@@ -11,6 +15,7 @@
 import DetailBanner from './components/Banner'
 import DetailHeader from './components/Header'
 import DetailList from './components/List'
+import axios from 'axios'
 export default {
   name: 'Detail',
   components: {
@@ -20,80 +25,33 @@ export default {
   },
   data () {
     return {
-      list: [
-        {
-          title: '成人票',
-          child: [{
-            title: '成人票三馆',
-            child: [
-              {
-                title: '天河区售'
-              }
-            ]
-          }, {
-            title: '成人票五馆',
-            child: [
-              {
-                title: '天河区售'
-              }
-            ]
-          }]
-        },
-        {
-          title: '学生票',
-          child: [{
-            title: '学生票三馆',
-            child: [
-              {
-                title: '天河区售'
-              }
-            ]
-          }, {
-            title: '学生票五馆',
-            child: [
-              {
-                title: '天河区售'
-              }
-            ]
-          }]
-        },
-        {
-          title: '儿童票',
-          child: [{
-            title: '儿童票三馆',
-            grandson: [
-              {
-                title: '天河区售'
-              }
-            ]
-          }, {
-            title: '儿童票五馆',
-            grandson: [
-              {
-                title: '天河区售'
-              }
-            ]
-          }]
-        },
-        {
-          title: '特惠票',
-          child: [{
-            title: '特惠票三馆',
-            grandson: [
-              {
-                title: '天河区售'
-              }
-            ]
-          }, {
-            title: '特惠票五馆',
-            grandson: [
-              {
-                title: '天河区售'
-              }
-            ]
-          }]
-        }]
+      sightName: '',
+      bannerImg: '',
+      gallaryImgs: [],
+      list: []
     }
+  },
+  methods: {
+    getDetailInfo () {
+      axios.get('/api/detail.json', {
+        params: {
+          id: this.$route.params.id
+        }
+      }).then(this.handleDetailData)
+    },
+    handleDetailData (res) {
+      res = res.data
+      if (res.ret && res.data) {
+        const data = res.data
+        this.sightName = data.sightName
+        this.bannerImg = data.bannerImg
+        this.gallaryImgs = data.gallaryImgs
+        this.list = data.categoryList
+      }
+    }
+  },
+  mounted () {
+    this.getDetailInfo()
   }
 }
 </script>

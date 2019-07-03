@@ -60,7 +60,7 @@ export default {
   activated () { // 使用keeplive时,会增加一个actived生命周期函数,他执行的时期是页面被重新显示时
     if (this.lastCity !== this.city) {
       this.lastCity = this.city
-      this.getHomeInfo()
+      this.getHomeInfo() // 与上次的城市不同时,需要重新加载ajax,保证当前页面显示的是当前的城市
     }
   }
 }
