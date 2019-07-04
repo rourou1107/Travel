@@ -10,9 +10,9 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: { // 代理
+    proxyTable: { // 在开发环境下,如果访问api这个路径,会把请求映射到80这个端口上
       '/api': {
-        target: 'http://localhost:8080', // 目标接口域名
+        target: 'http://localhost:8080', // 目标接口域名,php服务器上
         pathRewrite: {
           '^/api': '/static/mock' // 重写接口,以api开头的转到本地文件---转发
         }
